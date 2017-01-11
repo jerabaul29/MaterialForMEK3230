@@ -28,7 +28,7 @@ def coefficient_all_slices(slice_dict, mu, verbose=False):
     pass
 
 # name of the document
-freecad_doc_name = 'test_porous_media_packing_morphology' + str(attempt)
+freecad_doc_name = 'porous_media_slices_1'
 # path on which the document should be
 freecad_doc_path = '/home/hydroubuntu/Desktop/Current/'
 
