@@ -76,12 +76,12 @@ path = '/media/hydroubuntu/Seagate Expansion Drive/data_lab_module_07122016/data
 sampling_frequency = 30
 
 # loads the calibration --------------------------------------------------------
-poly_fit_calibration = np.loadtxt(path + 'poly_fit_calibration.npydat', delimiter=',')
+poly_fit_calibration = np.load(path + 'poly_fit_calibration.npy')
 
 # load list of all cases -------------------------------------------------------
 list_cases = []
 for file_name in os.listdir(path):
-    if fnmatch.fnmatch(file_name, 'seed_*DIR'):
+    if fnmatch.fnmatch(file_name, 'Test_*'):
         list_cases.append(file_name)
 
 print "Cases to process:"

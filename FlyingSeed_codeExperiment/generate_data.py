@@ -473,10 +473,10 @@ selected_positions_pixels = generate_data_calibration_click(path + folder + '/',
 poly_fit_calibration = perform_fitting_calibration_vertical(position_points, selected_positions_pixels, order=3, verbose=2, debug=False)
 
 print "save calibration"
-np.save(path + 'poly_fit_calibration.npydat', poly_fit_calibration)
+np.save(path + 'poly_fit_calibration', poly_fit_calibration)
 
 # loads the calibration --------------------------------------------------------
-poly_fit_calibration = np.loadtxt(path + 'poly_fit_calibration.npydat', delimiter=',')
+poly_fit_calibration = np.load(path + 'poly_fit_calibration.npy')
 
 # load list of all cases -------------------------------------------------------
 list_cases = []

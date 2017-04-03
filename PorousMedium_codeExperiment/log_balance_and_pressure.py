@@ -9,7 +9,6 @@ In particular, you will have to change the name_case.
 
 import serial
 import numpy as np
-import matplotlib.pyplot as plt
 import time
 import glob
 from StringIO import StringIO

@@ -155,7 +155,7 @@ path = '/media/hydroubuntu/Seagate Expansion Drive/data_lab_module_07122016/data
 sampling_frequency = 30
 
 # loads the calibration --------------------------------------------------------
-poly_fit_calibration = np.loadtxt(path + 'poly_fit_calibration.npydat', delimiter=',')
+poly_fit_calibration = np.load(path + 'poly_fit_calibration.npy')
 
 # load list of all cases -------------------------------------------------------
 list_cases = []

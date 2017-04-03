@@ -27,7 +27,7 @@ with open(destination + 'list_all_cases.txt', 'w') as crrt_file:
         crrt_file.write('\n')
 
 # calibration data
-shutil.copy(path + 'poly_fit_calibration.npydat', destination + 'poly_fit_calibration.npydat')
+shutil.copy(path + 'poly_fit_calibration.npy', destination + 'poly_fit_calibration.npy')
 
 # dict all results
 shutil.copy(path + 'dict_all_results.pkl', destination + 'dict_all_results.pkl')
