@@ -226,8 +226,8 @@ plt.figure()
 plt.plot(sorted_mean_pressures, sorted_mass_flow_rates, marker='o', color='b')
 plt.xlabel('mean pressure drop (kPa)')
 plt.ylabel('mass flow rate (g / s)')
-plt.xlim([0, 10])
-plt.ylim([0, 0.28])
+#plt.xlim([0, 8])
+#plt.ylim([0, 16])
 plt.show()
 
 # save the results for later use
