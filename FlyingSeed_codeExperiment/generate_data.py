@@ -19,6 +19,8 @@ def generate_image_list(path_to_images):
     for file_name in os.listdir(path_to_images):
         if fnmatch.fnmatch(file_name, '*.png'):
             list_images.append(file_name)
+            
+    list_images.sort()
 
     return list_images
 
