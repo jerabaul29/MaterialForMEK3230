@@ -21,9 +21,9 @@ debug = False
 
 # path to the data, format of the data file names and number of cases in the
 # corresponding case
-path = 'data/'
-base_name = '3Dprint_1_case_water_run_'
-number_of_cases = 12
+path = '/mn/sarpanitu/ansatte-u3/jeanra/Desktop/Current/gruppe_3/'
+base_name = '3Dprint_group_3_run_'
+number_of_cases = 6
 
 # select by hand the valid range on the data, to use for analysis
 # you will need to do this at least the first time you study a new set of
@@ -31,7 +31,7 @@ number_of_cases = 12
 perform_range_selection = True
 
 # show all measurements loaded, indicating the valid range chosen
-show_images_all = False
+show_images_all = True
 
 g = 9.81
 
@@ -61,19 +61,20 @@ class generateDataOnClick:
 
 def convert_pressure(raw_pressure_array):
     """Convert pressure from raw to kPa
-    
+
     According to data sheet:
     V_out = 5.0 * (0.09*P + 0.04)
-    
+
     remember that the Arduino is an ADC, so that:
     V_out = 5.0 / 1023.0 * raw_pressure_array
-    
+
     Use your own calibration to fill in the body of the function.
     """
-    
+
 
     # body of the ufnction to complete by the students
-    pressure_kpa = ...
+    V_out = 5.0 / 1023.0 * raw_pressure_array
+    pressure_kpa = (V_out / 5.0 - 0.04) / 0.09
 
     return pressure_kpa
 
@@ -122,7 +123,7 @@ if perform_range_selection:
                 x_position_2 = int(np.floor(accumulator[1][0]))
 
                 data_valid_range = np.array([x_position_1, x_position_2])
-                
+
                 # save the valid range for pressure
                 np.savetxt(path + base_name + str(current_file_number + 1) + "_vrp.csv", data_valid_range, delimiter=",")
 
@@ -131,7 +132,7 @@ if perform_range_selection:
                 max_ind_w = np.where(dict_data[path + base_name + str(current_file_number + 1) + '_tw.csv'] > dict_data[path + base_name + str(current_file_number + 1) + '_tp.csv'][x_position_2])[0]
 
                 data_valid_range = np.array([min_ind_w[0], max_ind_w[0]])
-                
+
                 # save the valid range for weight
                 np.savetxt(path + base_name + str(current_file_number + 1) + "_vrw.csv", data_valid_range, delimiter=",")
 
@@ -184,12 +185,16 @@ list_mass_flow_rates = []
 for current_file_number in range(number_of_cases):
     current_name_case = path + base_name + str(current_file_number + 1)
 
+    print "look at current name: " + str(current_name_case)
+
     # analysis of the pressure data ############################################
     # compute the mean pressure
     pressure_data = convert_pressure(dict_data[current_name_case + '_dp.csv'])
     pressure_vr = dict_data[current_name_case + '_vrp.csv']
 
     mean_valid_pressure = np.mean(pressure_data[pressure_vr[0]: pressure_vr[1]])
+
+    print "mean_valid_pressure: " + str(mean_valid_pressure)
 
     list_mean_pressures.append(mean_valid_pressure)
 
@@ -203,11 +208,14 @@ for current_file_number in range(number_of_cases):
 
     mean_mass_flow_rate = mass_increase / time_mass_increase
 
+    print "mean_mass_flow_rate: " + str(mean_mass_flow_rate)
+
     list_mass_flow_rates.append(mean_mass_flow_rate)
 
 # translate to numpy and order the data
 mean_pressures = np.array(list_mean_pressures)
 mass_flow_rates = np.array(list_mass_flow_rates)
+
 ordered_indexes = np.argsort(mean_pressures)
 
 sorted_mean_pressures = mean_pressures[ordered_indexes]
@@ -218,8 +226,8 @@ plt.figure()
 plt.plot(sorted_mean_pressures, sorted_mass_flow_rates, marker='o', color='b')
 plt.xlabel('mean pressure drop (kPa)')
 plt.ylabel('mass flow rate (g / s)')
-plt.xlim([0, 8])
-plt.ylim([0, 16])
+plt.xlim([0, 10])
+plt.ylim([0, 0.28])
 plt.show()
 
 # save the results for later use

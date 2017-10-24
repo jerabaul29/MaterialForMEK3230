@@ -84,7 +84,7 @@ plt.show()
 
 selected_positions_pixels = generate_data_on_click_object.return_positions()
 
-# print(selected_positions_pixels)
+print(selected_positions_pixels)
 
 # perform calibration ---------------------------------------------------------
 # distances in the real world are given in m
