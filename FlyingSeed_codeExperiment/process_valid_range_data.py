@@ -8,8 +8,8 @@ from scipy import signal
 from tqdm import tqdm
 import pickle
 
-#################################################################################
-# all functions ----------------------------------------------------------------
+
+# all functions for range selection ----------------------------------------------------------------
 
 
 def plot_raw_results_folder_process(list_pos_seed, list_true_wing_tip, polynomial_calibration_vertical=None, sampling_frequency=30.0, valid_index=(-1, -1), debug=False, f_max=5):
@@ -149,6 +149,9 @@ def load_one_result(result_name):
     return result_data
 
 #################################################################################
+#################################################################################
+# range selection is done from here
+# adapt paths / fnmatch arguments as needed
 
 # analysis of the data
 path = '/media/hydroubuntu/Seagate Expansion Drive/data_lab_module_07122016/data_seed/'

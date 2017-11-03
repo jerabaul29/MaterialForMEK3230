@@ -285,7 +285,7 @@ def plot_image_with_identified_points(list_images, dict_images, image_number, po
     plt.plot(wing_tip_2[1] + pos_seed[1] - int(np.floor(height_box / 2)), wing_tip_2[0] + pos_seed[0] - half_width_box, marker='o', color='g')
     plt.show()
 
-# Analysis of one folder and processing of raw results -------------------------
+# Analysis of one folder and processing of raw results functions ----------------------
 
 
 def process_folder_load(path_to_folder, verbose=0):
@@ -359,7 +359,7 @@ def process_folder_process(path_to_folder, dict_images, list_images, number_of_i
 
     return(list_pos_seed, list_width_data_seed, list_true_wing_tip)
 
-# Calibration and fine analysis of raw results ---------------------------------
+# Calibration and fine analysis of raw results functions ---------------------------------
 
 
 class generateDataOnClick:
@@ -463,6 +463,9 @@ def save_one_result(result_data, result_name):
             pickle.dump(result_data, crrt_file, pickle.HIGHEST_PROTOCOL)
 
 ################################################################################
+################################################################################
+# Here is the code that uses all the previously defined functions to do the
+# analysis; update paths, fnmatch arguments etc as needed.
 
 path = '/media/hydroubuntu/Seagate Expansion Drive/data_lab_module_07122016/data_seed/'
 
